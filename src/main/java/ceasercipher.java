@@ -65,4 +65,24 @@ public class ceasercipher {
         CeaserCypher.message = message;
         CeaserCypher.shift = shift;
 
+
+        //need an alphabet to use for character substitution
+        var alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        //convert message to upper case
+        message = message.toUpperCase();
+
+        StringBuilder encMessage = new StringBuilder();
+        int charPos, keyVal;
+        char encVal;
+
+        /* iterate through message and either substitute in encoded characters
+            or drop in spaces and punctuation, as needed */
+        for(int i = 0; i < message.length(); i++){
+            //switch handles spaces and punctuation
+            switch (message.charAt(i)) {
+                case ' ' -> encMessage.append(' ');
+                case '.' -> encMessage.append('.');
+                case ',' -> encMessage.append(",");
+                case '!' -> encMessage.append("!");
+                case '?' -> encMessage.append("?");
     }
