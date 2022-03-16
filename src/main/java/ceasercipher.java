@@ -1,3 +1,4 @@
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class ceasercipher {
@@ -29,6 +30,16 @@ public class ceasercipher {
             System.exit(0);
         }else if(message.equals("")){
             System.out.println("You didn't enter anything.");
+            System.exit(0);
+        }
+        //get cipher shift value from user and terminate if input is unacceptable
+        System.out.println("Please enter an integer for the cipher shift.");
+        System.out.println("Positive integers alphabetically shift right and negative integers alphabetically shift left.");
+        System.out.print("Cipher shift: ");
+        try{
+            shift = intReader.nextInt();
+        }catch(InputMismatchException e){
+            System.out.println("The shift value must be an integer.");
             System.exit(0);
         }
     }
