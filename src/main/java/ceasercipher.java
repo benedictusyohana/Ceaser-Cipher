@@ -59,6 +59,10 @@ public class ceasercipher {
         double elapsedTime2 = (double) duration2 / 1000000.0;
         System.out.println("Original message: " + origMessage);
         System.out.println("Decryption finished in: " + elapsedTime2 + " milliseconds.");
+    }
+    //accepts unencrypted message and returns encrypted message
+    public static String encrypt(String message, int shift){
+        CeaserCypher.message = message;
+        CeaserCypher.shift = shift;
 
     }
-}
