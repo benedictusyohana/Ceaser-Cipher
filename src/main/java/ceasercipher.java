@@ -62,8 +62,8 @@ public class ceasercipher {
     }
     //accepts unencrypted message and returns encrypted message
     public static String encrypt(String message, int shift){
-        CeaserCypher.message = message;
-        CeaserCypher.shift = shift;
+        ceasercipher.message = message;
+        ceasercipher.shift = shift;
 
 
         //need an alphabet to use for character substitution
@@ -107,3 +107,62 @@ public class ceasercipher {
         //return encoded message
         return encMessage.toString();
     }
+
+    //accepts encrypted message and returns decrypted (original) message
+    public static String decrypt(String encMessage, int shift){
+        String message = encMessage;
+        ceasercipher.shift = shift;
+
+        //need an alphabet to use for character substitution
+        String alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        //convert encoded message to upper case
+        encMessage = encMessage.toUpperCase();
+
+        StringBuilder origMessage = new StringBuilder();
+        int charPos, keyVal;
+        char repVal;
+
+        /* iterate through encrypted message and either substitute in un-encoded
+            characters or drop in spaces and punctuation, as needed */
+        for(int i = 0; i < encMessage.length(); i++){
+            //switch handles spaces and punctuation
+            switch (encMessage.charAt(i)) {
+                case ' ' -> origMessage.append(' ');
+                case '.' -> origMessage.append('.');
+                case ',' -> origMessage.append(",");
+                case '!' -> origMessage.append("!");
+                case '?' -> origMessage.append("?");
+
+
+                //not a space or punctuation mark, substitute un-encoded character
+                //find location of current character in alphabet
+                default -> {
+                    charPos = alphabet.indexOf(encMessage.charAt(i));
+                    //use shift to find location of un-encoded character
+                    keyVal = (charPos - shift) % 26;
+
+                         /* if keyVal is negative, we need to go to the other end
+                            of the alphabet */
+                    if (keyVal < 0) {
+                        keyVal = alphabet.length() + keyVal;
+                    }
+
+                    //found un-encoded character, insert into un-encoded message
+                    repVal = alphabet.charAt(keyVal);
+                    origMessage.append(repVal);
+                }
+            }
+        }
+        //return un-encoded (original) message
+        return origMessage.toString();
+
+    }
+
+    public static String getMessage() {
+        return message;
+    }
+
+    public static void setMessage(String message) {
+        ceasercipher.message = message;
+    }
+}
