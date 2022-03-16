@@ -51,5 +51,14 @@ public class ceasercipher {
         System.out.println("Encrypted message: " + encMessage);
         System.out.println("Encryption finished in: " + elapsedTime1 + " milliseconds.");
 
+        //run decryption on a timer and compute milliseconds
+        long startTime2 = System.nanoTime();
+        origMessage = decrypt(encMessage,shift);
+        long endTime2 = System.nanoTime();
+        long duration2 = endTime2 - startTime2;
+        double elapsedTime2 = (double) duration2 / 1000000.0;
+        System.out.println("Original message: " + origMessage);
+        System.out.println("Decryption finished in: " + elapsedTime2 + " milliseconds.");
+
     }
 }
