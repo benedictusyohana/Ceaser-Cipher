@@ -85,4 +85,25 @@ public class ceasercipher {
                 case ',' -> encMessage.append(",");
                 case '!' -> encMessage.append("!");
                 case '?' -> encMessage.append("?");
+                //not a space or punctuation mark, substitute encoded character
+                //find location of current character in alphabet
+                default -> {
+                    charPos = alphabet.indexOf(message.charAt(i));
+                    //use shift to find location of encoded character
+                    keyVal = (shift + charPos) % 26;
+
+                         /* if keyVal is negative, we need to go to the other end
+                            of the alphabet */
+                    if (keyVal < 0) {
+                        keyVal = alphabet.length() + keyVal;
+                    }
+
+                    //found encoded character, insert into encoded message
+                    encVal = alphabet.charAt(keyVal);
+                    encMessage.append(encVal);
+                }
+            }
+        }
+        //return encoded message
+        return encMessage.toString();
     }
