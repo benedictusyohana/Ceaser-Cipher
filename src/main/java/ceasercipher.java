@@ -42,5 +42,14 @@ public class ceasercipher {
             System.out.println("The shift value must be an integer.");
             System.exit(0);
         }
+        //run encryption on a timer and compute milliseconds
+        long startTime1 = System.nanoTime();
+        encMessage = encrypt(message,shift);
+        long endTime1 = System.nanoTime();
+        long duration1 = endTime1 - startTime1;
+        double elapsedTime1 = (double) duration1 / 1000000.0;
+        System.out.println("Encrypted message: " + encMessage);
+        System.out.println("Encryption finished in: " + elapsedTime1 + " milliseconds.");
+
     }
 }
