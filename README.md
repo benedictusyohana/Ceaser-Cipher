@@ -5,8 +5,8 @@
 <p>
     <ol>
         <li>
-            java 11
-            Gradle 4.10
+            java 17
+            Gradle 5.2
         </li>
     </ol>
 <h3>Usage</h3> 
